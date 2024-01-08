@@ -39,7 +39,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> filteredItems = items.where((item) {
-      return item['name']!.contains(searchQuery) ||
+      return item['name']!.toLowerCase().contains(searchQuery.toLowerCase()) ||
           item['registrationDate']!.contains(searchQuery) ||
           item['collectionDate']!.contains(searchQuery);
     }).toList();
