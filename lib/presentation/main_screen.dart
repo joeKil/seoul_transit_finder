@@ -10,8 +10,30 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String searchQuery = '';
   List<Map<String, String>> items = [
-    // 여기에 테스트 데이터를 넣어.
-    // 예: {'name': '신발', 'registrationDate': '2021-02-02', ... },
+    {
+      'name': 'shose',
+      'registrationDate': '2021-02-02',
+      'collectionDate': '2021-02-03',
+      'status': '안좋음',
+      'type': '의류',
+      'storageLocation': '서울역'
+    },
+    {
+      'name': 'bag',
+      'registrationDate': '2021-03-05',
+      'collectionDate': '2021-03-10',
+      'status': '양호',
+      'type': '액세서리',
+      'storageLocation': '부산역'
+    },
+    {
+      'name': 'jacket',
+      'registrationDate': '2021-04-15',
+      'collectionDate': '2021-04-20',
+      'status': '매우 좋음',
+      'type': '의류',
+      'storageLocation': '대구역'
+    },
   ];
 
   @override
