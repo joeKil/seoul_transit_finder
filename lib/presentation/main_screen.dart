@@ -11,7 +11,7 @@ class _MainScreenState extends State<MainScreen> {
   String searchQuery = '';
   List<Map<String, String>> items = [
     {
-      'name': 'shose',
+      'name': 'shoes',
       'registrationDate': '2021-02-02',
       'collectionDate': '2021-02-03',
       'status': '안좋음',
