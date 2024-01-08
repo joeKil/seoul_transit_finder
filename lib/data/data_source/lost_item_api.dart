@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 class LostItemApi {
-  final String _baseUrl = 'http://openapi.seoul.go.kr:8088/';
+  final String _baseUrl = 'http://openapi.seoul.go.kr:8088';
 
   final Dio _dio;
 
@@ -9,10 +9,11 @@ class LostItemApi {
     required Dio dio,
   }) : _dio = dio;
 
-  Future<List<dynamic>> getSubwayArrivalInfoList(String lostItemName) async {
+  Future<List<dynamic>> getLostItemInfoList() async {
     final response = await _dio.get(
-      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/5/$lostItemName',
+      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/100/',
     );
+    print('Response: ${response.data}');
     final data = response.data as Map<String, dynamic>;
     final lostArticleInfo = data['lostArticleInfo'] as List<dynamic>;
     return lostArticleInfo;
