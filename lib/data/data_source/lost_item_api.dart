@@ -9,9 +9,9 @@ class LostItemApi {
     required Dio dio,
   }) : _dio = dio;
 
-  Future<List<dynamic>> getLostItemInfoList(String lostItemName) async {
+  Future<List<dynamic>> getLostItemInfoList() async {
     final response = await _dio.get(
-      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/100/$lostItemName',
+      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/100/',
     );
     print('Response: ${response.data}');
     final data = response.data as Map<String, dynamic>;
