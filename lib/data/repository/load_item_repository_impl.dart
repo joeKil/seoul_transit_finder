@@ -14,7 +14,7 @@ class LostItemRepositoryImpl implements LostItemRepository {
   @override
   Future<Result<List<LostItemInfo>>> getLostItems(String query) async {
     try {
-      final response = await _lostItemApi.getLostItemInfoList(query);
+      final response = await _lostItemApi.getLostItemInfoList();
       final lostItemList =
           response.map((e) => LostItemInfo.fromJson(e)).toList();
       return Result.success(lostItemList);
