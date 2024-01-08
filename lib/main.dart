@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seoul_transit_finder/presentation/main_screen.dart';
+import 'package:seoul_transit_finder/ui/main/main_screen.dart';
 
 void main() {
   runApp(const MyApp());
