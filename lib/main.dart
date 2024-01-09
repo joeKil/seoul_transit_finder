@@ -1,8 +1,19 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:seoul_transit_finder/presentation/main_screen.dart';
+import 'package:seoul_transit_finder/data/data_source/lost_item_api.dart';
+import 'package:seoul_transit_finder/ui/main/main_screen.dart';
+import 'package:seoul_transit_finder/ui/main/main_view_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => MainViewModel(LostItemApi(dio: Dio())),
+      child: MaterialApp(
+        home: MainScreen(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

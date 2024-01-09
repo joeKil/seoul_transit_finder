@@ -11,11 +11,11 @@ class LostItemApi {
 
   Future<List<dynamic>> getLostItemInfoList() async {
     final response = await _dio.get(
-      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/100/',
+      '$_baseUrl/764973644a74686633374b67634777/json/lostArticleInfo/1/5/',
     );
-    print('Response: ${response.data}');
+    // print('Response: ${response.data}');
     final data = response.data as Map<String, dynamic>;
-    final lostArticleInfo = data['lostArticleInfo'] as List<dynamic>;
+    final lostArticleInfo = data['lostArticleInfo']['row'] as List<dynamic>;
     return lostArticleInfo;
   }
 }
