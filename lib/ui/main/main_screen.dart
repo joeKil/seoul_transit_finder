@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:seoul_transit_finder/data/data_source/lost_item_api.dart';
 import 'package:seoul_transit_finder/data/repository/load_item_repository_impl.dart';
 import 'package:seoul_transit_finder/ui/main/main_view_model.dart';
@@ -22,12 +21,20 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     viewModel = MainViewModel(LostItemApi(dio: Dio()));
-    viewModel.fetchLostItems();
+    viewModel.fetchLostItems().then((_) {
+      print('lost items데이터: ${viewModel.lostItems}');
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<MainViewModel>();
+    print('item 갯수: ${viewModel.lostItems.length}');
+
+    // 필터링
+    final filteredItems = viewModel.lostItems
+        .where((item) => item.itemName.contains(searchQuery))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -37,21 +44,20 @@ class _MainScreenState extends State<MainScreen> {
               searchQuery = value;
             });
           },
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             hintText: '검색',
             prefixIcon: Icon(Icons.search),
           ),
         ),
       ),
       body: viewModel.isLoading
-          ? Center(
+          ? const Center(
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-              itemCount: viewModel.lostItems.length,
+              itemCount: filteredItems.length,
               itemBuilder: (context, index) {
-                final item = viewModel.lostItems[index];
-                print('item index $index: ${item.itemName}');
+                final item = filteredItems[index];
                 return Card(
                   child: ListTile(
                     title: Text(item.itemName),
