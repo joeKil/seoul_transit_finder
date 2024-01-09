@@ -21,9 +21,11 @@ class MainViewModel extends ChangeNotifier {
 
     try {
       final response = await _api.getLostItemInfoList();
-      _lostItems = response
-          .map((item) => LostItemInfo.fromJson(item as Map<String, dynamic>))
-          .toList();
+      _lostItems = response.map((item) {
+        final lostItem = LostItemInfo.fromJson(item as Map<String, dynamic>);
+        print('분실물 데이터: $lostItem');
+        return lostItem;
+      }).toList();
     } catch (e) {
       print('Error fetching lost items: $e');
     } finally {
